@@ -974,7 +974,7 @@ function displayResearchProfiles() {
             profileUrl: 'https://scholar.google.com/citations?hl=en&user=LHEiuS4AAAAJ', // Replace with actual ID
             icon: '🎓',
             stats: [
-                { label: 'Citations', value: '6'},
+                { label: 'Citations', value: '8'},
                 { label: 'h-index', value: '1'},
                 { label: 'i10-index', value: '0'}
             ]
@@ -984,7 +984,7 @@ function displayResearchProfiles() {
             profileUrl: 'https://www.researchgate.net/profile/Griffin-Goodwin-2?ev=hdr_xprf', // Replace with actual profile
             icon: '🔬',
             stats: [
-                { label: 'Research Interest Score', value: '6.5'},
+                { label: 'Research Interest Score', value: '7.9'},
             ]
         },
         orcid: {
