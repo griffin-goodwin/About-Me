@@ -1,3 +1,37 @@
+// Screenshot carousel
+(function () {
+    const images = document.querySelectorAll('.app-screenshot');
+    const dots = document.querySelectorAll('.carousel-dot');
+    let current = 0;
+    let timer;
+
+    function goTo(index) {
+        images[current].classList.remove('active');
+        dots[current].classList.remove('active');
+        current = (index + images.length) % images.length;
+        images[current].classList.add('active');
+        dots[current].classList.add('active');
+    }
+
+    function startAuto() {
+        timer = setInterval(() => goTo(current + 1), 3500);
+    }
+
+    function stopAuto() {
+        clearInterval(timer);
+    }
+
+    document.querySelector('.carousel-prev')?.addEventListener('click', () => { stopAuto(); goTo(current - 1); startAuto(); });
+    document.querySelector('.carousel-next')?.addEventListener('click', () => { stopAuto(); goTo(current + 1); startAuto(); });
+    dots.forEach((dot, i) => dot.addEventListener('click', () => { stopAuto(); goTo(i); startAuto(); }));
+
+    const carousel = document.querySelector('.screenshot-carousel');
+    carousel?.addEventListener('mouseenter', stopAuto);
+    carousel?.addEventListener('mouseleave', startAuto);
+
+    startAuto();
+})();
+
 // Smooth scrolling for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
