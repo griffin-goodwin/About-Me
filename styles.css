@@ -856,6 +856,120 @@ body {
    }
    
    /* =========================================
+      SOL.SWx App Section
+      ========================================= */
+   .solswx-content {
+       display: grid;
+       grid-template-columns: 1fr 1fr;
+       gap: 4rem;
+       align-items: center;
+   }
+
+   .solswx-tagline {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1rem;
+       color: var(--data-green);
+       margin-bottom: 1.2rem;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+   }
+
+   .solswx-text {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.95rem;
+       color: var(--secondary-text);
+       line-height: 1.8;
+       margin-bottom: 2rem;
+   }
+
+   .solswx-features {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 0.6rem;
+       margin-bottom: 2rem;
+   }
+
+   .solswx-feature {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.75rem;
+       font-weight: 600;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       padding: 0.4em 0.9em;
+       border-radius: 4px;
+       background: rgba(255, 107, 53, 0.1);
+       border: 1px solid rgba(255, 107, 53, 0.3);
+       color: var(--flare-orange);
+   }
+
+   .solswx-links {
+       display: flex;
+       gap: 1rem;
+       flex-wrap: wrap;
+   }
+
+   .solswx-gh-button {
+       background: linear-gradient(135deg, var(--space-blue), var(--nebula-purple)) !important;
+       border-color: var(--nebula-purple) !important;
+       box-shadow: 0 0 20px rgba(106, 76, 147, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+   }
+
+   .solswx-gh-button:hover {
+       box-shadow: 0 0 40px rgba(106, 76, 147, 0.6), 0 10px 30px rgba(106, 76, 147, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+       border-color: #a78bfa !important;
+   }
+
+   .solswx-screenshots {
+       overflow: hidden;
+   }
+
+   .screenshot-scroll {
+       display: flex;
+       gap: 1rem;
+       overflow-x: auto;
+       padding-bottom: 1rem;
+       scroll-snap-type: x mandatory;
+       -webkit-overflow-scrolling: touch;
+   }
+
+   .screenshot-scroll::-webkit-scrollbar {
+       height: 6px;
+   }
+
+   .screenshot-scroll::-webkit-scrollbar-track {
+       background: var(--space-navy);
+       border-radius: 3px;
+   }
+
+   .screenshot-scroll::-webkit-scrollbar-thumb {
+       background: var(--flare-orange);
+       border-radius: 3px;
+   }
+
+   .app-screenshot {
+       flex-shrink: 0;
+       width: 160px;
+       border-radius: 16px;
+       border: 2px solid var(--panel-border);
+       box-shadow: 0 0 20px var(--panel-glow);
+       transition: all 0.3s ease;
+       scroll-snap-align: start;
+   }
+
+   .app-screenshot:hover {
+       transform: scale(1.05);
+       border-color: var(--flare-orange);
+       box-shadow: 0 0 30px rgba(255, 107, 53, 0.4);
+   }
+
+   @media (max-width: 768px) {
+       .solswx-content {
+           grid-template-columns: 1fr;
+           gap: 2rem;
+       }
+   }
+
+   /* =========================================
       13. Research Profiles Section
       ========================================= */
    .research-profiles-grid {
