@@ -952,7 +952,7 @@ body {
 
    .app-screenshot {
        flex-shrink: 0;
-       width: 160px;
+       width: 240px;
        border-radius: 16px;
        border: 2px solid var(--panel-border);
        box-shadow: 0 0 20px var(--panel-glow);
