@@ -4,28 +4,28 @@
    @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Courier+Prime:wght@400;700&family=Source+Code+Pro:wght@300;400;500;600;700&display=swap');
 
    :root {
-       /* Solar Flare Color Palette */
-       --flare-orange: #FF6B35;
-       --flare-red: #E63946;
-       --flare-yellow: #FFB20F;
-       --solar-corona: #FFA500;
-       
-       /* Deep Space Colors */
-       --space-black: #0a0e27;
-       --space-navy: #1a1f3a;
-       --space-blue: #2d3561;
-       --nebula-purple: #6a4c93;
-       
+       /* Soft Academic Palette */
+       --flare-orange: #38bdf8;       /* sky blue — primary accent */
+       --flare-red: #0ea5e9;          /* blue-600 — secondary accent */
+       --flare-yellow: #f59e0b;       /* amber — highlights */
+       --solar-corona: #fbbf24;       /* gold — warm accent */
+
+       /* Deep Slate Background */
+       --space-black: #0f172a;
+       --space-navy: #1e293b;
+       --space-blue: #334155;
+       --nebula-purple: #6366f1;
+
        /* Observatory Interface */
-       --panel-bg: rgba(26, 31, 58, 0.95);
-       --panel-border: rgba(255, 107, 53, 0.3);
-       --panel-glow: rgba(255, 107, 53, 0.15);
-       
+       --panel-bg: rgba(30, 41, 59, 0.95);
+       --panel-border: rgba(56, 189, 248, 0.22);
+       --panel-glow: rgba(56, 189, 248, 0.08);
+
        /* Text Colors */
-       --primary-text: #e8edf4;
-       --secondary-text: #a8b2c8;
-       --accent-text: #FF6B35;
-       --data-green: #4ecca3;
+       --primary-text: #e2e8f0;
+       --secondary-text: #94a3b8;
+       --accent-text: #38bdf8;
+       --data-green: #34d399;
    }
    
 /* =========================================
@@ -39,21 +39,22 @@
 
 body {
        font-family: 'Source Code Pro', 'Courier New', monospace;
-       line-height: 1.7;
+       font-size: 18px;
+       line-height: 1.75;
        color: var(--primary-text);
        
-       /* Deep Space Background with Solar Flares */
+       /* Deep Slate Background with Subtle Nebula */
        background-color: var(--space-black);
-       background-image: 
-           radial-gradient(2px 2px at 20% 30%, white, transparent),
-           radial-gradient(2px 2px at 60% 70%, white, transparent),
-           radial-gradient(1px 1px at 50% 50%, white, transparent),
-           radial-gradient(1px 1px at 80% 10%, white, transparent),
-           radial-gradient(2px 2px at 90% 60%, white, transparent),
-           radial-gradient(1px 1px at 33% 80%, white, transparent),
-           radial-gradient(2px 2px at 15% 90%, white, transparent),
-           radial-gradient(ellipse at 10% 20%, rgba(255, 107, 53, 0.15), transparent 40%),
-           radial-gradient(ellipse at 90% 80%, rgba(230, 57, 70, 0.1), transparent 50%),
+       background-image:
+           radial-gradient(1px 1px at 20% 30%, rgba(255,255,255,0.7), transparent),
+           radial-gradient(1px 1px at 60% 70%, rgba(255,255,255,0.5), transparent),
+           radial-gradient(1px 1px at 50% 15%, rgba(255,255,255,0.6), transparent),
+           radial-gradient(1px 1px at 80% 10%, rgba(255,255,255,0.4), transparent),
+           radial-gradient(1px 1px at 90% 60%, rgba(255,255,255,0.5), transparent),
+           radial-gradient(1px 1px at 33% 80%, rgba(255,255,255,0.4), transparent),
+           radial-gradient(1px 1px at 15% 90%, rgba(255,255,255,0.6), transparent),
+           radial-gradient(ellipse at 15% 20%, rgba(56, 189, 248, 0.07), transparent 45%),
+           radial-gradient(ellipse at 85% 75%, rgba(99, 102, 241, 0.06), transparent 50%),
            linear-gradient(180deg, var(--space-black) 0%, var(--space-navy) 100%);
        background-size: 
            200% 200%,
@@ -71,25 +72,6 @@ body {
        position: relative;
    }
    
-   /* Animated scan-line effect */
-   body::before {
-       content: "";
-       position: fixed;
-       top: 0;
-       left: 0;
-       width: 100%;
-       height: 100%;
-       background: repeating-linear-gradient(
-           0deg,
-           rgba(255, 255, 255, 0.01) 0px,
-           rgba(255, 255, 255, 0.01) 1px,
-           transparent 1px,
-           transparent 2px
-       );
-       pointer-events: none;
-       z-index: 1;
-       opacity: 0.3;
-   }
    
 /* =========================================
      3. Navigation - Observatory Control Panel
@@ -98,11 +80,10 @@ body {
     position: fixed;
     top: 0;
     width: 100%;
-       background: linear-gradient(180deg, rgba(10, 14, 39, 0.98) 0%, rgba(26, 31, 58, 0.95) 100%);
-       backdrop-filter: blur(20px);
-       -webkit-backdrop-filter: blur(20px);
-       border-bottom: 2px solid var(--panel-border);
-       box-shadow: 0 4px 30px rgba(255, 107, 53, 0.1), 0 0 40px rgba(255, 107, 53, 0.05);
+       background: rgba(15, 23, 42, 0.96);
+       backdrop-filter: blur(16px);
+       -webkit-backdrop-filter: blur(16px);
+       border-bottom: 1px solid rgba(56, 189, 248, 0.1);
     z-index: 1000;
     padding: 1rem 0;
        transition: all 0.3s ease;
@@ -117,22 +98,25 @@ body {
     align-items: center;
 }
 
+.logo-link {
+       text-decoration: none;
+   }
+
 .logo {
        font-family: 'JetBrains Mono', monospace;
-    font-size: 1.5rem;
+       font-size: 0.95rem;
        font-weight: 800;
        color: var(--flare-orange);
-       letter-spacing: 2px;
+       letter-spacing: 5px;
        text-transform: uppercase;
-       text-shadow: 0 0 20px rgba(255, 107, 53, 0.5), 0 0 40px rgba(255, 107, 53, 0.2);
-       position: relative;
+       opacity: 0.9;
+       transition: opacity 0.2s ease;
+   }
+
+   .logo:hover {
+       opacity: 1;
    }
    
-   .logo::before {
-       content: "▸ ";
-       color: var(--data-green);
-       animation: blink 2s infinite;
-   }
    
    @keyframes blink {
        0%, 49% { opacity: 1; }
@@ -151,45 +135,30 @@ body {
        font-weight: 600;
        font-family: 'JetBrains Mono', monospace;
        position: relative;
-       font-size: 0.9rem;
+       font-size: 0.95rem;
        text-transform: uppercase;
        letter-spacing: 1px;
        transition: all 0.3s ease;
        padding: 0.5rem 0;
    }
    
-   /* Data terminal underline */
    .nav-link::after {
        content: '';
        position: absolute;
        bottom: 0;
        left: 0;
        width: 0;
-       height: 2px;
-       background: linear-gradient(90deg, var(--flare-orange), var(--flare-red));
-       box-shadow: 0 0 10px var(--flare-orange);
-       transition: width 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+       height: 1px;
+       background: var(--flare-orange);
+       transition: width 0.3s ease;
    }
-   
-   .nav-link::before {
-       content: "[";
-       color: var(--panel-border);
-       margin-right: 0.3rem;
-       opacity: 0;
-       transition: opacity 0.3s ease;
-}
 
 .nav-link:hover {
        color: var(--flare-orange);
-       text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
    }
-   
+
    .nav-link:hover::after {
        width: 100%;
-   }
-   
-   .nav-link:hover::before {
-       opacity: 1;
    }
    
    /* =========================================
@@ -255,67 +224,133 @@ body {
     animation: fadeInUp 1s ease 0.2s backwards;
 }
 
-   /* Observatory Command Button */
    .cta-button, .cv-button, .contact-button, .refresh-button {
-    display: inline-block;
-    padding: 1rem 2.5rem;
-       background: linear-gradient(135deg, var(--flare-orange), var(--flare-red));
-       color: white;
-    text-decoration: none;
-       border: 2px solid var(--flare-orange);
-       border-radius: 4px;
+       display: inline-block;
+       padding: 0.65rem 1.5rem;
+       background: transparent;
+       color: var(--flare-orange);
+       text-decoration: none;
+       border: 1px solid rgba(56, 189, 248, 0.35);
+       border-radius: 2px;
        font-family: 'JetBrains Mono', monospace;
-       font-weight: 700;
-       font-size: 0.9rem;
+       font-weight: 600;
+       font-size: 0.78rem;
        letter-spacing: 2px;
        text-transform: uppercase;
-       box-shadow: 
-           0 0 20px rgba(255, 107, 53, 0.4),
-           inset 0 1px 0 rgba(255, 255, 255, 0.2);
        cursor: pointer;
-       transition: all 0.3s ease;
-    animation: fadeInUp 1s ease 0.4s backwards;
-       position: relative;
-       overflow: hidden;
+       transition: background 0.2s ease, border-color 0.2s ease;
    }
-   
-   .cta-button::before, .cv-button::before, .contact-button::before, .refresh-button::before {
-       content: '';
-       position: absolute;
-       top: 50%;
-       left: 50%;
-       width: 0;
-       height: 0;
-       border-radius: 50%;
-       background: rgba(255, 255, 255, 0.2);
-       transform: translate(-50%, -50%);
-       transition: width 0.6s, height 0.6s;
-   }
-   
-   .cta-button:hover::before, .cv-button:hover::before, .contact-button:hover::before, .refresh-button:hover::before {
-       width: 300px;
-       height: 300px;
-   }
-   
+
    .cta-button:hover, .cv-button:hover, .contact-button:hover, .refresh-button:hover {
-       transform: translateY(-2px);
-       box-shadow: 
-           0 0 40px rgba(255, 107, 53, 0.6),
-           0 10px 30px rgba(255, 107, 53, 0.3),
-           inset 0 1px 0 rgba(255, 255, 255, 0.3);
-       border-color: var(--flare-yellow);
+       background: rgba(56, 189, 248, 0.08);
+       border-color: var(--flare-orange);
    }
    
+   /* =========================================
+      4b. About — Terminal
+      ========================================= */
+   .about-section {
+       min-height: 100vh;
+       display: flex;
+       align-items: center;
+       padding-top: 8rem;
+   }
+
+   .about-content {
+       max-width: 920px;
+       width: 100%;
+   }
+
+   .about-terminal {
+       border: 1px solid rgba(56, 189, 248, 0.18);
+       border-radius: 6px;
+       background: rgba(10, 15, 28, 0.75);
+       overflow: hidden;
+       margin-bottom: 2rem;
+   }
+
+   .terminal-bar {
+       background: rgba(20, 30, 48, 0.9);
+       border-bottom: 1px solid rgba(56, 189, 248, 0.1);
+       padding: 0.65rem 1.5rem;
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.8rem;
+       color: var(--secondary-text);
+       letter-spacing: 1px;
+       opacity: 0.7;
+   }
+
+   .terminal-body {
+       padding: 2.75rem 3rem 3rem;
+   }
+
+   .terminal-cmd {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1rem;
+       color: var(--secondary-text);
+       margin: 0 0 0.6rem;
+   }
+
+   .terminal-prompt-char {
+       color: var(--data-green);
+       margin-right: 0.55rem;
+   }
+
+   .terminal-name {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: clamp(2.4rem, 5.5vw, 4.2rem);
+       font-weight: 800;
+       color: var(--primary-text);
+       letter-spacing: -1px;
+       line-height: 1.1;
+       margin: 0 0 1.75rem;
+   }
+
+   .terminal-cursor {
+       display: inline-block;
+       width: 0.55em;
+       height: 0.85em;
+       background: var(--data-green);
+       vertical-align: baseline;
+       margin-bottom: -0.05em;
+       margin-left: 0.2rem;
+       opacity: 0.75;
+       animation: blink 1.2s step-end infinite;
+   }
+
+   .terminal-gap {
+       margin-top: 1.6rem;
+   }
+
+   .terminal-output {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 1rem;
+       color: var(--secondary-text);
+       line-height: 1.75;
+       margin: 0;
+   }
+
+   .terminal-output-award {
+       color: var(--flare-orange);
+       opacity: 0.85;
+       margin-top: 0.2rem;
+   }
+
+   .about-links {
+       display: flex;
+       gap: 0.75rem;
+       flex-wrap: wrap;
+   }
+
    /* =========================================
       5. General Layout & Sections
       ========================================= */
 .section {
-       padding: 6rem 2rem;
-       position: relative; /* For z-index stacking */
+       padding: 7rem 2rem;
+       position: relative;
    }
    
    .papers-section {
-       padding-top: 8rem; /* Extra padding for first section */
        /* Removed background-color to let body gradient show through */
 }
 
@@ -325,116 +360,63 @@ body {
 }
 
 .section-title {
-       font-family: 'Courier Prime', 'Courier New', monospace;
-       font-size: 2.8rem;
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.72rem;
        font-weight: 700;
-       margin-bottom: 3rem;
-    text-align: center;
+       margin-bottom: 4rem;
+       text-align: left;
        color: var(--flare-orange);
        letter-spacing: 4px;
        text-transform: uppercase;
-       text-shadow: 0 0 20px rgba(255, 107, 53, 0.4);
-       position: relative;
-       display: inline-block;
-       width: 100%;
+       display: flex;
+       align-items: center;
+       gap: 1.5rem;
    }
-   
-   .section-title::before {
-       content: "// ";
-       color: var(--secondary-text);
-       opacity: 0.5;
-   }
-   
+
    .section-title::after {
        content: '';
-       display: block;
-       width: 100px;
-       height: 3px;
-       background: linear-gradient(90deg, transparent, var(--flare-orange), transparent);
-       margin: 1rem auto 0;
-       box-shadow: 0 0 10px var(--flare-orange);
+       flex: 1;
+       height: 1px;
+       background: rgba(56, 189, 248, 0.12);
    }
    
 /* =========================================
      6. Observatory Panel Styles
      ========================================= */
    .project-card, .paper-card, .spaceweather-card, .stats-card {
-       background: var(--panel-bg);
-       backdrop-filter: blur(20px);
-       -webkit-backdrop-filter: blur(20px);
-       border-radius: 8px;
-       border: 2px solid var(--panel-border);
-       box-shadow: 
-           0 0 20px var(--panel-glow),
-           inset 0 1px 0 rgba(255, 107, 53, 0.1);
-       padding: 2rem;
-       transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-       position: relative;
-       overflow: hidden;
+       background: rgba(30, 41, 59, 0.4);
+       border: 1px solid rgba(56, 189, 248, 0.1);
+       border-left: 3px solid rgba(56, 189, 248, 0.15);
+       border-radius: 0;
+       padding: 1.75rem 2rem;
+       transition: border-left-color 0.25s ease, background 0.25s ease;
        display: flex;
        flex-direction: column;
    }
-   
-   /* Solar flare glow effect on hover */
-   .project-card::before, .paper-card::before, .spaceweather-card::before {
-       content: "";
-       position: absolute;
-       inset: -2px;
-       border-radius: 8px;
-       padding: 2px;
-       background: linear-gradient(135deg, var(--flare-orange), var(--flare-red), var(--solar-corona));
-       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-       -webkit-mask-composite: xor;
-       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-       mask-composite: exclude;
-       opacity: 0;
-       transition: opacity 0.4s ease;
-       pointer-events: none;
-   }
-   
+
    .project-card:hover, .paper-card:hover, .spaceweather-card:hover {
-       transform: translateY(-4px);
-       box-shadow: 
-           0 0 40px var(--flare-orange),
-           0 20px 40px rgba(255, 107, 53, 0.2),
-           inset 0 1px 0 rgba(255, 107, 53, 0.2);
-       border-color: var(--flare-orange);
+       border-left-color: var(--flare-orange);
+       background: rgba(30, 41, 59, 0.6);
    }
    
-   .project-card:hover::before, .paper-card:hover::before, .spaceweather-card:hover::before {
-       opacity: 1;
-   }
-   
-   .project-card h3, .paper-card h3, .spaceweather-card h3 {
+   .project-card h3, .spaceweather-card h3 {
        font-family: 'JetBrains Mono', monospace;
-       font-size: 1.1rem;
-       margin-bottom: 1rem;
-       color: var(--flare-orange);
+       font-size: 0.9rem;
+       margin-bottom: 0.75rem;
+       color: var(--primary-text);
        font-weight: 700;
-       text-transform: uppercase;
-       letter-spacing: 0.5px;
-       line-height: 1.4;
+       text-transform: none;
+       letter-spacing: 0;
+       line-height: 1.5;
        word-wrap: break-word;
        overflow-wrap: break-word;
-   }
-   
-   .project-card h3::before, .paper-card h3::before, .spaceweather-card h3::before {
-       content: "[ ";
-       color: var(--data-green);
-       white-space: nowrap;
-   }
-   
-   .project-card h3::after, .paper-card h3::after, .spaceweather-card h3::after {
-       content: " ]";
-       color: var(--data-green);
-       white-space: nowrap;
    }
    
    .project-card p, .paper-card p {
        color: var(--secondary-text);
        margin-bottom: 1.5rem;
-       line-height: 1.7;
-       font-size: 0.95rem;
+       line-height: 1.8;
+       font-size: 1rem;
    }
    
    /* =========================================
@@ -460,26 +442,19 @@ body {
    
    .stat-value {
        font-family: 'JetBrains Mono', monospace;
-       font-size: 3rem;
+       font-size: 2.8rem;
        font-weight: 800;
-       margin-bottom: 0.5rem;
+       margin-bottom: 0.4rem;
        color: var(--flare-orange);
-       text-shadow: 0 0 20px rgba(255, 107, 53, 0.5);
-       animation: pulse-glow 2s ease-in-out infinite;
    }
-   
+
    .stat-label {
-       font-family: 'Source Code Pro', monospace;
-       font-size: 0.85rem;
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.68rem;
        color: var(--secondary-text);
        font-weight: 600;
        text-transform: uppercase;
        letter-spacing: 2px;
-   }
-   
-   .stat-label::before {
-       content: "> ";
-       color: var(--data-green);
    }
    
    .stat-item.languages {
@@ -498,21 +473,21 @@ body {
        padding: 0.5em 1.2em;
        border-radius: 4px;
        color: var(--primary-text);
-       background: rgba(255, 107, 53, 0.1);
-       border: 1px solid rgba(255, 107, 53, 0.3);
+       background: rgba(56, 189, 248, 0.1);
+       border: 1px solid rgba(56, 189, 248, 0.3);
        font-family: 'JetBrains Mono', monospace;
        font-size: 0.75rem;
        font-weight: 600;
        text-transform: uppercase;
        letter-spacing: 1px;
-       box-shadow: 0 0 10px rgba(255, 107, 53, 0.1);
+       box-shadow: 0 0 10px rgba(56, 189, 248, 0.1);
        transition: all 0.3s ease;
    }
    
    .language-badge:hover, .repo-language:hover {
-       background: rgba(255, 107, 53, 0.2);
+       background: rgba(56, 189, 248, 0.2);
        border-color: var(--flare-orange);
-       box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+       box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
        transform: translateY(-2px);
    }
    
@@ -543,7 +518,7 @@ body {
 }
 
 .project-link {
-       color: #6366f1;
+       color: var(--data-green);
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
@@ -552,131 +527,131 @@ body {
 }
 
 .project-link:hover {
-       color: #d946ef;
+       color: var(--flare-orange);
    }
    
    /* =========================================
-      9. Papers Section
+      9. Papers Section — Citation List
       ========================================= */
    .papers-grid {
-       display: grid;
-       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-       gap: 2rem;
-       margin-top: 3rem;
+       display: flex;
+       flex-direction: column;
+       margin-top: 1rem;
    }
-   
+
+   .paper-item {
+       display: grid;
+       grid-template-columns: 2.5rem 1fr;
+       gap: 2rem;
+       padding: 2.5rem 0;
+       border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+       align-items: start;
+   }
+
+   .paper-item:first-child {
+       border-top: 1px solid rgba(56, 189, 248, 0.08);
+   }
+
+   .paper-num {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.72rem;
+       color: var(--flare-orange);
+       letter-spacing: 1px;
+       padding-top: 0.25rem;
+       opacity: 0.7;
+   }
+
+   .paper-body {
+       display: flex;
+       flex-direction: column;
+       gap: 0.4rem;
+   }
+
+   .paper-title {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1rem;
+       font-weight: 700;
+       color: var(--primary-text);
+       line-height: 1.5;
+       letter-spacing: 0;
+       text-transform: none;
+       margin: 0 0 0.3rem;
+   }
+
    .paper-authors {
        font-family: 'Source Code Pro', monospace;
        color: var(--secondary-text);
-       font-style: italic;
-       margin-bottom: 0.5rem;
        font-size: 0.9rem;
-       letter-spacing: 0.3px;
+       line-height: 1.6;
+       margin: 0;
    }
-   
-   .paper-authors::before {
-       content: "AUTHORS: ";
-       font-style: normal;
-       color: var(--data-green);
-       font-weight: 700;
-       letter-spacing: 1px;
-   }
-   
+
    .paper-publication {
        font-family: 'JetBrains Mono', monospace;
        color: var(--flare-orange);
-       font-size: 0.85rem;
-       margin-bottom: 1rem;
+       font-size: 0.78rem;
        font-weight: 600;
-       letter-spacing: 1px;
-       text-transform: uppercase;
+       letter-spacing: 0.5px;
+       margin: 0.2rem 0 0.8rem;
+       opacity: 0.85;
    }
-   
-   .paper-publication::before {
-       content: "[";
-       color: var(--data-green);
-   }
-   
-   .paper-publication::after {
-       content: "]";
-       color: var(--data-green);
-   }
-   
+
    .paper-abstract {
        font-family: 'Source Code Pro', monospace;
-       color: var(--primary-text);
-       font-size: 0.9rem;
-       line-height: 1.8;
-       margin-bottom: 1.5rem;
-       padding: 1.5rem;
-       background: rgba(10, 14, 39, 0.6);
-       border-radius: 6px;
-       border: 1px solid rgba(255, 107, 53, 0.2);
-       letter-spacing: 0.3px;
+       color: var(--secondary-text);
+       font-size: 0.88rem;
+       line-height: 1.85;
+       margin-bottom: 1rem;
+       border-left: 2px solid rgba(56, 189, 248, 0.2);
+       padding-left: 1rem;
    }
-   
-   .paper-abstract strong {
-       color: var(--data-green);
-       display: block;
-       margin-bottom: 0.7rem;
-       font-family: 'JetBrains Mono', monospace;
-       letter-spacing: 1px;
-       text-transform: uppercase;
-   }
-   
-   .paper-abstract strong::before {
-       content: "// ";
-       opacity: 0.7;
-   }
-   
+
    .abstract-toggle {
-       background: rgba(255, 107, 53, 0.1);
-       border: 1px solid rgba(255, 107, 53, 0.3);
-       border-radius: 4px;
-       color: var(--flare-orange);
+       background: none;
+       border: 1px solid rgba(56, 189, 248, 0.25);
+       border-radius: 2px;
+       color: var(--secondary-text);
        cursor: pointer;
        font-family: 'JetBrains Mono', monospace;
-       font-size: 0.75rem;
-       font-weight: 700;
-       padding: 0.4em 0.8em;
-       margin-left: 0.5rem;
-       text-transform: uppercase;
+       font-size: 0.72rem;
+       font-weight: 600;
+       padding: 0.3em 0.7em;
+       margin-top: 0.6rem;
        letter-spacing: 1px;
-       transition: all 0.3s ease;
+       transition: all 0.2s ease;
+       display: block;
+       width: fit-content;
    }
-   
+
    .abstract-toggle:hover {
-       background: rgba(255, 107, 53, 0.2);
+       color: var(--flare-orange);
        border-color: var(--flare-orange);
-       box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
    }
    
    .paper-links {
        display: flex;
-       gap: 1rem;
-       margin-top: auto;
+       gap: 0.6rem;
+       flex-wrap: wrap;
+       margin-top: 0.5rem;
    }
-   
+
    .paper-link {
        font-family: 'JetBrains Mono', monospace;
-       color: var(--data-green);
+       color: var(--secondary-text);
        text-decoration: none;
-       font-weight: 600;
-       transition: all 0.3s ease;
-       font-size: 0.85rem;
-       letter-spacing: 1px;
+       font-size: 0.72rem;
+       letter-spacing: 1.5px;
        text-transform: uppercase;
-       border: 1px solid rgba(78, 204, 163, 0.3);
-       padding: 0.5em 1em;
-       border-radius: 4px;
-       background: rgba(78, 204, 163, 0.1);
+       border: 1px solid rgba(56, 189, 248, 0.2);
+       padding: 0.3em 0.75em;
+       border-radius: 2px;
+       background: transparent;
+       transition: color 0.2s ease, border-color 0.2s ease;
    }
-   
+
    .paper-link:hover {
        color: var(--flare-orange);
-       border-color: var(--flare-orange);
-       background: rgba(255, 107, 53, 0.1);
-       box-shadow: 0 0 15px rgba(255, 107, 53, 0.2);
+       border-color: rgba(56, 189, 248, 0.5);
    }
    
    /* =========================================
@@ -760,21 +735,21 @@ body {
        letter-spacing: 2px;
        box-shadow: 0 0 15px rgba(255, 178, 15, 0.3);
    }
-   .flare-class-c { 
-       background: rgba(255, 107, 53, 0.2); 
-       color: #ff6b35; 
-       border: 2px solid rgba(255, 107, 53, 0.5); 
-       border-radius: 4px; 
-       padding: 0.3em 1em; 
+   .flare-class-c {
+       background: rgba(255, 107, 53, 0.2);
+       color: #ff6b35;
+       border: 2px solid rgba(255, 107, 53, 0.5);
+       border-radius: 4px;
+       padding: 0.3em 1em;
        font-family: 'JetBrains Mono', monospace;
        font-weight: 700;
        letter-spacing: 2px;
        box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
    }
    .flare-class-b { 
-       background: rgba(78, 204, 163, 0.2); 
-       color: #4ecca3; 
-       border: 2px solid rgba(78, 204, 163, 0.5); 
+       background: rgba(52, 211, 153, 0.2); 
+       color: #34d399;
+       border: 2px solid rgba(52, 211, 153, 0.5); 
        border-radius: 4px; 
        padding: 0.3em 1em; 
        font-family: 'JetBrains Mono', monospace;
@@ -801,7 +776,7 @@ body {
    
    .spaceweather-class strong {
        color: var(--flare-orange);
-       text-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+       text-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
    }
    
    .spaceweather-time {
@@ -811,17 +786,6 @@ body {
        letter-spacing: 1px;
    }
    
-   .spaceweather-time::before {
-       content: "[";
-       color: var(--data-green);
-       margin-right: 0.2em;
-   }
-   
-   .spaceweather-time::after {
-       content: "]";
-       color: var(--data-green);
-       margin-left: 0.2em;
-   }
    
    .spaceweather-controls {
        text-align: center;
@@ -836,15 +800,6 @@ body {
        letter-spacing: 1px;
    }
    
-   .auto-refresh-note::before {
-       content: "[ ";
-       color: var(--data-green);
-   }
-   
-   .auto-refresh-note::after {
-       content: " ]";
-       color: var(--data-green);
-   }
    
    .sdo-image-note {
        font-family: 'JetBrains Mono', monospace;
@@ -897,8 +852,8 @@ body {
        text-transform: uppercase;
        padding: 0.4em 0.9em;
        border-radius: 4px;
-       background: rgba(255, 107, 53, 0.1);
-       border: 1px solid rgba(255, 107, 53, 0.3);
+       background: rgba(56, 189, 248, 0.1);
+       border: 1px solid rgba(56, 189, 248, 0.3);
        color: var(--flare-orange);
    }
 
@@ -951,7 +906,7 @@ body {
    }
 
    .carousel-btn {
-       background: rgba(255, 107, 53, 0.1);
+       background: rgba(56, 189, 248, 0.1);
        border: 2px solid var(--panel-border);
        border-radius: 4px;
        color: var(--flare-orange);
@@ -964,9 +919,9 @@ body {
    }
 
    .carousel-btn:hover {
-       background: rgba(255, 107, 53, 0.2);
+       background: rgba(56, 189, 248, 0.2);
        border-color: var(--flare-orange);
-       box-shadow: 0 0 15px rgba(255, 107, 53, 0.3);
+       box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
    }
 
    .carousel-dots {
@@ -987,7 +942,7 @@ body {
 
    .carousel-dot.active {
        background: var(--flare-orange);
-       box-shadow: 0 0 8px rgba(255, 107, 53, 0.6);
+       box-shadow: 0 0 8px rgba(56, 189, 248, 0.6);
    }
 
    @media (max-width: 768px) {
@@ -1015,7 +970,7 @@ body {
        border: 2px solid var(--panel-border);
        box-shadow: 
            0 0 20px var(--panel-glow),
-           inset 0 1px 0 rgba(255, 107, 53, 0.1);
+           inset 0 1px 0 rgba(56, 189, 248, 0.1);
        padding: 2rem;
        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
        display: flex;
@@ -1026,8 +981,8 @@ body {
        transform: translateY(-4px);
        box-shadow: 
            0 0 40px var(--flare-orange),
-           0 20px 40px rgba(255, 107, 53, 0.2),
-           inset 0 1px 0 rgba(255, 107, 53, 0.2);
+           0 20px 40px rgba(56, 189, 248, 0.2),
+           inset 0 1px 0 rgba(56, 189, 248, 0.2);
        border-color: var(--flare-orange);
    }
    
@@ -1041,8 +996,16 @@ body {
    }
    
    .profile-icon {
-       font-size: 2.5rem;
-       filter: drop-shadow(0 0 10px var(--flare-orange));
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.85rem;
+       font-weight: 800;
+       letter-spacing: 1px;
+       color: var(--space-black);
+       background: var(--flare-orange);
+       padding: 0.35em 0.6em;
+       border-radius: 4px;
+       box-shadow: 0 0 12px rgba(56, 189, 248, 0.4);
+       flex-shrink: 0;
    }
    
    .profile-header h3 {
@@ -1071,7 +1034,7 @@ body {
        font-size: 1.8rem;
        font-weight: 800;
        color: var(--data-green);
-       text-shadow: 0 0 15px rgba(78, 204, 163, 0.5);
+       text-shadow: 0 0 15px rgba(52, 211, 153, 0.5);
        margin-bottom: 0.3rem;
    }
    
@@ -1104,10 +1067,10 @@ body {
        font-size: 0.9rem;
        letter-spacing: 1px;
        text-transform: uppercase;
-       border: 1px solid rgba(78, 204, 163, 0.3);
+       border: 1px solid rgba(52, 211, 153, 0.3);
        padding: 0.8em 1.5em;
        border-radius: 4px;
-       background: rgba(78, 204, 163, 0.1);
+       background: rgba(52, 211, 153, 0.1);
        text-align: center;
        margin-top: auto;
        transition: all 0.3s ease;
@@ -1117,14 +1080,14 @@ body {
    .profile-link:hover {
        color: var(--flare-orange);
        border-color: var(--flare-orange);
-       background: rgba(255, 107, 53, 0.1);
-       box-shadow: 0 0 20px rgba(255, 107, 53, 0.3);
+       background: rgba(56, 189, 248, 0.1);
+       box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
        transform: translateX(5px);
    }
    
    .research-note {
-       background: rgba(78, 204, 163, 0.1);
-       border: 1px solid rgba(78, 204, 163, 0.3);
+       background: rgba(52, 211, 153, 0.1);
+       border: 1px solid rgba(52, 211, 153, 0.3);
        border-radius: 8px;
        padding: 1.5rem;
        text-align: center;
@@ -1143,12 +1106,12 @@ body {
        border: 2px solid var(--panel-border);
        box-shadow: 
            0 0 20px var(--panel-glow),
-           inset 0 1px 0 rgba(255, 107, 53, 0.1);
+           inset 0 1px 0 rgba(56, 189, 248, 0.1);
    }
    
    .featured-repo {
        grid-column: span 2;
-       background: rgba(255, 107, 53, 0.05);
+       background: rgba(56, 189, 248, 0.05);
        border-radius: 8px;
        padding: 1rem;
    }
@@ -1196,10 +1159,6 @@ body {
        letter-spacing: 0.5px;
    }
    
-   .cv-text::before {
-       content: ">> ";
-       color: var(--data-green);
-   }
    
    .cv-links {
        display: flex;
@@ -1212,19 +1171,15 @@ body {
    .cv-preview {
        width: 100%;
        height: 800px;
-       border: 2px solid var(--panel-border);
-       border-radius: 8px;
-       box-shadow: 
-           0 0 30px var(--panel-glow),
-           inset 0 1px 0 rgba(255, 107, 53, 0.1);
-       background: rgba(26, 31, 58, 0.5);
+       border: 1px solid rgba(56, 189, 248, 0.12);
+       background: rgba(30, 41, 59, 0.4);
    }
    
    /* =========================================
       12. Contact & Footer
       ========================================= */
 .contact-section {
-       background: linear-gradient(180deg, transparent 0%, rgba(26, 31, 58, 0.5) 100%);
+       background: linear-gradient(180deg, transparent 0%, rgba(30, 41, 59, 0.5) 100%);
        backdrop-filter: blur(10px);
     text-align: center;
 }
@@ -1237,10 +1192,6 @@ body {
        letter-spacing: 0.5px;
    }
    
-   .contact-text::before {
-       content: ">> ";
-       color: var(--data-green);
-}
 
 .contact-links {
     display: flex;
@@ -1263,22 +1214,20 @@ body {
    }
 
    ::-webkit-scrollbar-thumb {
-       background: linear-gradient(to bottom, var(--flare-orange), var(--flare-red));
+       background: rgba(56, 189, 248, 0.25);
        border-radius: 2px;
        border: 2px solid var(--space-black);
-       box-shadow: 0 0 10px rgba(255, 107, 53, 0.5);
    }
 
    ::-webkit-scrollbar-thumb:hover {
-       background: linear-gradient(to bottom, var(--flare-yellow), var(--solar-corona));
-       box-shadow: 0 0 20px rgba(255, 107, 53, 0.7);
+       background: rgba(56, 189, 248, 0.45);
    }
 
    /* Pulsing effect for live data */
    @keyframes pulse-glow {
-       0% { text-shadow: 0 0 5px rgba(99, 102, 241, 0.2); }
-       50% { text-shadow: 0 0 20px rgba(99, 102, 241, 0.6); }
-       100% { text-shadow: 0 0 5px rgba(99, 102, 241, 0.2); }
+       0% { text-shadow: 0 0 5px rgba(56, 189, 248, 0.2); }
+       50% { text-shadow: 0 0 20px rgba(56, 189, 248, 0.7); }
+       100% { text-shadow: 0 0 5px rgba(56, 189, 248, 0.2); }
    }
 
    .value-large {
@@ -1310,11 +1259,6 @@ body {
        box-shadow: 0 0 10px var(--flare-orange);
    }
    
-   .footer p::before {
-       content: "// ";
-       color: var(--data-green);
-       opacity: 0.7;
-   }
    
    /* =========================================
       13. Modals & Extras
@@ -1326,7 +1270,7 @@ body {
        left: 0;
        width: 100%;
        height: 100%;
-       background-color: rgba(10, 14, 39, 0.95);
+       background-color: rgba(15, 23, 42, 0.95);
        backdrop-filter: blur(20px);
        display: flex;
        justify-content: center;
@@ -1345,7 +1289,7 @@ body {
        background: var(--panel-bg);
        box-shadow: 
            0 0 60px var(--flare-orange),
-           0 25px 50px -12px rgba(255, 107, 53, 0.4);
+           0 25px 50px -12px rgba(56, 189, 248, 0.4);
    }
    
    .sxr-modal-image {

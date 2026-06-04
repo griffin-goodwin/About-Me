@@ -160,8 +160,8 @@ function displayGitHubRepos(container, repos) {
             <div class="repo-meta">
                 ${repo.language ? `<span class="repo-language" style="background-color: ${getLanguageColor(repo.language)}">${repo.language}</span>` : ''}
                 <span class="repo-stats">
-                    <span class="repo-stat">⭐ ${repo.stargazers_count}</span>
-                    <span class="repo-stat">🍴 ${repo.forks_count}</span>
+                    <span class="repo-stat">* ${repo.stargazers_count}</span>
+                    <span class="repo-stat">/ ${repo.forks_count}</span>
                 </span>
             </div>
             <a href="${repo.html_url}" class="project-link" target="_blank">View on GitHub →</a>
@@ -207,10 +207,11 @@ function getLanguageColor(language) {
 // Note: Abstracts and full author lists should be extracted from PDFs and updated here
 const paperData = [
     {
-        path: 'Papers/2510.22801v1.pdf',
+        path: 'Papers/Goodwin_2026_ApJ_1003_48 (2).pdf',
         title: 'FOXES: A Framework For Operational X-ray Emission Synthesis',
         authors: 'Griffin T. Goodwin, Jayant Biradar, Alison J. March, Christoph Schirninger, Robert Jarolim, Angelos Vourlidas, Lorien Pratt',
-        publicationInfo: 'arXiv:2510.22801',
+        publicationInfo: 'ApJ 2026, 1003, 48',
+        arxivId: '2510.22801',
         abstract: 'Understanding solar flares is critical for predicting space weather, as their activity shapes how the Sun influences Earth and its environment. The development of reliable forecasting methodologies of these events depends on robust flare catalogs, but current methods are limited to flare classification using integrated soft X-ray emission that are available only from Earth\'s perspective. This reduces accuracy in pinpointing the location and strength of farside flares and their connection to geoeffective events. In this work, we introduce a Vision Transformer (ViT)-based approach that translates Extreme Ultraviolet (EUV) observations into soft x-ray flux while also setting the groundwork for estimating flare locations in the future. The model achieves accurate flux predictions across flare classes using quantitative metrics. This paves the way for EUV-based flare detection to be extended beyond Earth\'s line of sight, which allows for a more comprehensive and complete solar flare catalog.'
     },
     {
@@ -444,36 +445,40 @@ async function loadPapers() {
         }
         
         papersGrid.innerHTML = papers.map((paper, index) => {
+            const num = String(index + 1).padStart(2, '0');
             const abstractId = `abstract-${index}`;
-            const truncatedLength = 200;
+            const truncatedLength = 280;
             const hasAbstract = paper.abstract && paper.abstract.length > 0;
             const needsTruncation = hasAbstract && paper.abstract.length > truncatedLength;
             const truncatedAbstract = needsTruncation ? paper.abstract.substring(0, truncatedLength) + '...' : paper.abstract;
-            
+
             return `
-            <div class="paper-card">
-                <h3>${paper.title}</h3>
-                <p class="paper-authors">${paper.authors}</p>
-                <p class="paper-publication">${paper.publicationInfo}</p>
-                ${hasAbstract ? `
-                    <div class="paper-abstract" id="${abstractId}">
-                        <strong>Abstract:</strong> 
-                        <span class="abstract-text">${truncatedAbstract}</span>
-                        ${needsTruncation ? `
-                            <span class="abstract-full" style="display: none;">${paper.abstract}</span>
-                            <button class="abstract-toggle" onclick="toggleAbstract('${abstractId}')">Read more</button>
-                        ` : ''}
+            <div class="paper-item">
+                <span class="paper-num">${num}</span>
+                <div class="paper-body">
+                    <h3 class="paper-title">${paper.title}</h3>
+                    <p class="paper-authors">${paper.authors}</p>
+                    <p class="paper-publication">${paper.publicationInfo}</p>
+                    ${hasAbstract ? `
+                        <div class="paper-abstract" id="${abstractId}">
+                            <p class="abstract-text">${truncatedAbstract}</p>
+                            ${needsTruncation ? `
+                                <p class="abstract-full" style="display: none;">${paper.abstract}</p>
+                                <button class="abstract-toggle" onclick="toggleAbstract('${abstractId}')">expand abstract</button>
+                            ` : ''}
+                        </div>
+                    ` : ''}
+                    <div class="paper-links">
+                        <a href="${paper.path}" class="paper-link" target="_blank">PDF</a>
+                        <a href="${paper.path}" class="paper-link" download>Download</a>
+                        ${paper.arxivId ? `<a href="https://arxiv.org/abs/${paper.arxivId}" class="paper-link" target="_blank">arXiv:${paper.arxivId}</a>` : ''}
                     </div>
-                ` : ''}
-                <div class="paper-links">
-                    <a href="${paper.path}" class="paper-link" target="_blank">View PDF</a>
-                    <a href="${paper.path}" class="paper-link" download>Download</a>
                 </div>
             </div>
         `}).join('');
         
         // Apply animations to paper cards
-        const paperCards = papersGrid.querySelectorAll('.paper-card');
+        const paperCards = papersGrid.querySelectorAll('.paper-item');
         paperCards.forEach((card, index) => {
             card.style.opacity = '0';
             card.style.transform = 'translateY(30px)';
@@ -653,7 +658,7 @@ function drawSXRChart(canvasId, xrayData) {
     ctx.clearRect(0, 0, width, height);
     
     // Draw background
-    ctx.fillStyle = '#f8f9fa';
+    ctx.fillStyle = '#1e293b';
     ctx.fillRect(0, 0, width, height);
     
     // Draw grid lines
@@ -677,7 +682,7 @@ function drawSXRChart(canvasId, xrayData) {
     ctx.stroke();
     
     // Draw data line
-    ctx.strokeStyle = '#667eea';
+    ctx.strokeStyle = '#38bdf8';
     ctx.lineWidth = 2;
     ctx.beginPath();
     
@@ -825,7 +830,7 @@ function displaySpaceWeather(container, alerts, latestFlare, flareForecast, show
     // Show fallback message if API failed
     const fallbackMessage = showFallback ? `
         <div class="spaceweather-warning">
-            <p>⚠️ Live data temporarily unavailable. Showing placeholder information.</p>
+            <p>[ ! ] Live data temporarily unavailable. Showing placeholder information.</p>
             <p>Please check back later or visit <a href="https://www.swpc.noaa.gov" target="_blank">NOAA SWPC</a> directly.</p>
         </div>
     ` : '';
@@ -983,17 +988,15 @@ function toggleAbstract(abstractId) {
     if (!abstractFull || !toggleButton) return;
     
     const isExpanded = abstractFull.style.display !== 'none';
-    
+
     if (isExpanded) {
-        // Collapse
-        abstractText.style.display = 'inline';
+        abstractText.style.display = 'block';
         abstractFull.style.display = 'none';
-        toggleButton.textContent = 'Read more';
+        toggleButton.textContent = 'expand abstract';
     } else {
-        // Expand
         abstractText.style.display = 'none';
-        abstractFull.style.display = 'inline';
-        toggleButton.textContent = 'Read less';
+        abstractFull.style.display = 'block';
+        toggleButton.textContent = 'collapse abstract';
     }
 }
 
@@ -1005,8 +1008,8 @@ function displayResearchProfiles() {
     const profiles = {
         googleScholar: {
             name: 'Google Scholar',
-            profileUrl: 'https://scholar.google.com/citations?hl=en&user=LHEiuS4AAAAJ', // Replace with actual ID
-            icon: '🎓',
+            profileUrl: 'https://scholar.google.com/citations?hl=en&user=LHEiuS4AAAAJ',
+            icon: 'GS',
             stats: [
                 { label: 'Citations', value: '11'},
                 { label: 'h-index', value: '1'},
@@ -1015,16 +1018,16 @@ function displayResearchProfiles() {
         },
         researchGate: {
             name: 'ResearchGate',
-            profileUrl: 'https://www.researchgate.net/profile/Griffin-Goodwin-2?ev=hdr_xprf', // Replace with actual profile
-            icon: '🔬',
+            profileUrl: 'https://www.researchgate.net/profile/Griffin-Goodwin-2?ev=hdr_xprf',
+            icon: 'RG',
             stats: [
                 { label: 'Research Interest Score', value: '9.0'},
             ]
         },
         orcid: {
             name: 'ORCID',
-            profileUrl: 'https://orcid.org/0000-0003-3493-9174', // Replace with actual ORCID
-            icon: '🆔',
+            profileUrl: 'https://orcid.org/0000-0003-3493-9174',
+            icon: 'ID',
             stats: [
                 { label: 'Profile ID', value: '0000-0003-3493-9174'}
             ]
@@ -1155,7 +1158,7 @@ function displayEnhancedGitHubStats(container, stats) {
             </div>
             ${stats.mostStarred ? `
                 <div class="stat-item featured-repo">
-                    <div class="stat-value">⭐ ${stats.mostStarred.stargazers_count}</div>
+                    <div class="stat-value">${stats.mostStarred.stargazers_count} *</div>
                     <div class="stat-label">Most Starred</div>
                     <div class="stat-note">${stats.mostStarred.name}</div>
                 </div>
