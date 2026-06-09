@@ -1222,14 +1222,30 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(card);
     });
 
-    // Scroll-reveal for static CV-derived sections (experience, education, honors, talks)
-    const revealItems = document.querySelectorAll(
-        '.timeline-item, .education-card, .teaching-item, .award-row, .talk-row'
-    );
-    revealItems.forEach((item, index) => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(24px)';
-        item.style.transition = `opacity 0.6s ease ${(index % 6) * 0.08}s, transform 0.6s ease ${(index % 6) * 0.08}s`;
-        observer.observe(item);
-    });
+    // Scroll-reveal for static CV-derived sections (experience, education, honors, talks).
+    // Only hide items when IntersectionObserver is available and motion is allowed,
+    // so content can never be left permanently invisible.
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if ('IntersectionObserver' in window && !reduceMotion) {
+        const revealItems = document.querySelectorAll(
+            '.timeline-item, .education-card, .teaching-item, .award-row, .talk-row'
+        );
+        revealItems.forEach((item, index) => {
+            item.style.opacity = '0';
+            item.style.transform = 'translateY(24px)';
+            item.style.transition = `opacity 0.6s ease ${(index % 6) * 0.08}s, transform 0.6s ease ${(index % 6) * 0.08}s`;
+            observer.observe(item);
+        });
+
+        // Fail-safe: if anything is still hidden a few seconds after load
+        // (e.g., observer never fired on this browser), reveal it.
+        window.setTimeout(() => {
+            revealItems.forEach(item => {
+                if (item.style.opacity === '0' && item.getBoundingClientRect().top < window.innerHeight) {
+                    item.style.opacity = '1';
+                    item.style.transform = 'translateY(0)';
+                }
+            });
+        }, 3000);
+    }
 });
