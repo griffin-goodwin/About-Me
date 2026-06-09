@@ -126,7 +126,9 @@ body {
 .nav-menu {
     display: flex;
     list-style: none;
-    gap: 2rem;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .nav-link {
@@ -348,6 +350,7 @@ body {
 .section {
        padding: 7rem 2rem;
        position: relative;
+       scroll-margin-top: 4.5rem; /* keep anchored sections clear of fixed navbar */
    }
    
    .papers-section {
@@ -653,7 +656,428 @@ body {
        color: var(--flare-orange);
        border-color: rgba(56, 189, 248, 0.5);
    }
-   
+
+   /* =========================================
+      9b. Experience Timeline
+      ========================================= */
+   .subsection-gap {
+       margin-top: 6rem;
+   }
+
+   .timeline {
+       display: flex;
+       flex-direction: column;
+   }
+
+   .timeline-item {
+       display: grid;
+       grid-template-columns: 240px 1fr;
+       gap: 3rem;
+       padding: 2.5rem 0 2.5rem 2rem;
+       position: relative;
+       border-left: 1px solid rgba(56, 189, 248, 0.18);
+   }
+
+   /* Node dot on the timeline spine */
+   .timeline-item::before {
+       content: '';
+       position: absolute;
+       left: -5px;
+       top: 3.15rem;
+       width: 9px;
+       height: 9px;
+       border-radius: 50%;
+       background: var(--space-black);
+       border: 2px solid var(--flare-orange);
+       box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+       transition: background 0.25s ease;
+   }
+
+   .timeline-item:hover::before {
+       background: var(--flare-orange);
+   }
+
+   .timeline-meta {
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+       padding-top: 0.3rem;
+   }
+
+   .timeline-date {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.75rem;
+       font-weight: 700;
+       color: var(--flare-orange);
+       letter-spacing: 1.5px;
+       text-transform: uppercase;
+   }
+
+   .timeline-org {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.82rem;
+       color: var(--secondary-text);
+       line-height: 1.6;
+   }
+
+   .timeline-role {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1.05rem;
+       font-weight: 700;
+       color: var(--primary-text);
+       letter-spacing: 0;
+       margin: 0 0 0.4rem;
+       line-height: 1.5;
+   }
+
+   .timeline-advisors {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.72rem;
+       color: var(--secondary-text);
+       letter-spacing: 0.5px;
+       opacity: 0.8;
+       margin: 0 0 1rem;
+   }
+
+   .timeline-desc {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.92rem;
+       color: var(--secondary-text);
+       line-height: 1.85;
+       margin: 0 0 1.2rem;
+   }
+
+   .timeline-highlight {
+       color: var(--data-green);
+       font-weight: 600;
+   }
+
+   .timeline-tags {
+       display: flex;
+       flex-wrap: wrap;
+       gap: 0.5rem;
+   }
+
+   .timeline-tag {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.68rem;
+       font-weight: 600;
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       padding: 0.3em 0.8em;
+       border-radius: 2px;
+       background: rgba(56, 189, 248, 0.07);
+       border: 1px solid rgba(56, 189, 248, 0.2);
+       color: var(--secondary-text);
+       transition: color 0.2s ease, border-color 0.2s ease;
+   }
+
+   .timeline-tag:hover {
+       color: var(--flare-orange);
+       border-color: rgba(56, 189, 248, 0.5);
+   }
+
+   /* =========================================
+      9c. Education Cards
+      ========================================= */
+   .education-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+       gap: 2rem;
+   }
+
+   .education-card {
+       background: rgba(30, 41, 59, 0.4);
+       border: 1px solid rgba(56, 189, 248, 0.1);
+       border-top: 3px solid rgba(56, 189, 248, 0.25);
+       padding: 2rem 2.25rem;
+       transition: border-top-color 0.25s ease, background 0.25s ease;
+   }
+
+   .education-card:hover {
+       border-top-color: var(--flare-orange);
+       background: rgba(30, 41, 59, 0.6);
+   }
+
+   .education-dates {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.72rem;
+       font-weight: 700;
+       color: var(--flare-orange);
+       letter-spacing: 1.5px;
+       text-transform: uppercase;
+       margin: 0 0 0.8rem;
+   }
+
+   .education-school {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1.1rem;
+       font-weight: 700;
+       color: var(--primary-text);
+       margin: 0 0 0.8rem;
+       line-height: 1.4;
+   }
+
+   .education-degree {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.92rem;
+       color: var(--secondary-text);
+       line-height: 1.7;
+       margin: 0;
+   }
+
+   .education-degree-secondary {
+       opacity: 0.85;
+   }
+
+   .education-stats {
+       display: flex;
+       align-items: baseline;
+       gap: 1.25rem;
+       flex-wrap: wrap;
+       margin-top: 1.4rem;
+       padding-top: 1.2rem;
+       border-top: 1px solid rgba(56, 189, 248, 0.1);
+   }
+
+   .education-gpa {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 1.3rem;
+       font-weight: 800;
+       color: var(--data-green);
+   }
+
+   .education-gpa-scale {
+       font-size: 0.8rem;
+       font-weight: 600;
+       opacity: 0.6;
+   }
+
+   .education-note {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.7rem;
+       color: var(--flare-yellow);
+       letter-spacing: 1px;
+       text-transform: uppercase;
+       opacity: 0.85;
+   }
+
+   /* =========================================
+      9d. Teaching & Mentoring
+      ========================================= */
+   .teaching-grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+       gap: 2rem;
+   }
+
+   .teaching-item {
+       display: flex;
+       flex-direction: column;
+       gap: 0.4rem;
+       background: rgba(30, 41, 59, 0.4);
+       border: 1px solid rgba(56, 189, 248, 0.1);
+       border-left: 3px solid rgba(56, 189, 248, 0.15);
+       padding: 1.5rem 1.75rem;
+       transition: border-left-color 0.25s ease, background 0.25s ease;
+   }
+
+   .teaching-item:hover {
+       border-left-color: var(--flare-orange);
+       background: rgba(30, 41, 59, 0.6);
+   }
+
+   .teaching-dates {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.7rem;
+       font-weight: 700;
+       color: var(--flare-orange);
+       letter-spacing: 1.5px;
+       text-transform: uppercase;
+   }
+
+   .teaching-role {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.95rem;
+       font-weight: 700;
+       color: var(--primary-text);
+       margin: 0.2rem 0 0.3rem;
+   }
+
+   .teaching-desc {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.88rem;
+       color: var(--secondary-text);
+       line-height: 1.75;
+       margin: 0;
+   }
+
+   /* =========================================
+      9e. Honors & Awards Ledger
+      ========================================= */
+   .awards-list {
+       display: flex;
+       flex-direction: column;
+   }
+
+   .award-row {
+       display: grid;
+       grid-template-columns: 160px 1fr;
+       gap: 2rem;
+       align-items: baseline;
+       padding: 1.2rem 0.5rem;
+       border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+       transition: background 0.2s ease;
+   }
+
+   .award-row:first-child {
+       border-top: 1px solid rgba(56, 189, 248, 0.08);
+   }
+
+   .award-row:hover {
+       background: rgba(56, 189, 248, 0.04);
+   }
+
+   .award-year {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.75rem;
+       font-weight: 700;
+       color: var(--flare-orange);
+       letter-spacing: 1px;
+       opacity: 0.8;
+   }
+
+   .award-info {
+       display: flex;
+       flex-direction: column;
+       gap: 0.15rem;
+   }
+
+   .award-name {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.95rem;
+       font-weight: 700;
+       color: var(--primary-text);
+       line-height: 1.5;
+   }
+
+   .award-detail {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.85rem;
+       color: var(--secondary-text);
+       line-height: 1.6;
+   }
+
+   /* Flagship awards get the amber treatment */
+   .award-row-major .award-name {
+       color: var(--flare-yellow);
+   }
+
+   .award-row-major .award-year {
+       color: var(--flare-yellow);
+   }
+
+   /* =========================================
+      9f. Talks & Presentations
+      ========================================= */
+   .talks-list {
+       display: flex;
+       flex-direction: column;
+   }
+
+   .talk-row {
+       display: grid;
+       grid-template-columns: 160px 1fr;
+       gap: 2rem;
+       padding: 1.75rem 0.5rem;
+       border-bottom: 1px solid rgba(56, 189, 248, 0.08);
+       align-items: start;
+       transition: background 0.2s ease;
+   }
+
+   .talk-row:first-child {
+       border-top: 1px solid rgba(56, 189, 248, 0.08);
+   }
+
+   .talk-row:hover {
+       background: rgba(56, 189, 248, 0.04);
+   }
+
+   .talk-date {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.75rem;
+       font-weight: 700;
+       color: var(--flare-orange);
+       letter-spacing: 1px;
+       opacity: 0.8;
+       padding-top: 0.25rem;
+   }
+
+   .talk-info {
+       display: flex;
+       flex-direction: column;
+       gap: 0.5rem;
+   }
+
+   .talk-header {
+       display: flex;
+       align-items: center;
+       gap: 0.9rem;
+       flex-wrap: wrap;
+   }
+
+   .talk-badge {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.62rem;
+       font-weight: 700;
+       letter-spacing: 1.5px;
+       text-transform: uppercase;
+       padding: 0.35em 0.9em;
+       border-radius: 2px;
+       white-space: nowrap;
+   }
+
+   .badge-invited {
+       color: var(--flare-yellow);
+       background: rgba(245, 158, 11, 0.1);
+       border: 1px solid rgba(245, 158, 11, 0.4);
+   }
+
+   .badge-organizer {
+       color: var(--data-green);
+       background: rgba(52, 211, 153, 0.1);
+       border: 1px solid rgba(52, 211, 153, 0.4);
+   }
+
+   .badge-lightning {
+       color: var(--flare-orange);
+       background: rgba(56, 189, 248, 0.1);
+       border: 1px solid rgba(56, 189, 248, 0.4);
+   }
+
+   .badge-poster {
+       color: #a78bfa;
+       background: rgba(167, 139, 250, 0.1);
+       border: 1px solid rgba(167, 139, 250, 0.4);
+   }
+
+   .talk-venue {
+       font-family: 'JetBrains Mono', monospace;
+       font-size: 0.75rem;
+       color: var(--secondary-text);
+       letter-spacing: 0.5px;
+   }
+
+   .talk-title {
+       font-family: 'Source Code Pro', monospace;
+       font-size: 0.95rem;
+       font-style: italic;
+       color: var(--primary-text);
+       line-height: 1.7;
+       margin: 0;
+       opacity: 0.9;
+   }
+
    /* =========================================
       10. Space Weather Section
       ========================================= */
@@ -1369,6 +1793,29 @@ body {
        .cv-preview {
            height: 500px;
     }
+
+       .timeline-item {
+           grid-template-columns: 1fr;
+           gap: 0.9rem;
+           padding-left: 1.5rem;
+       }
+
+       .timeline-item::before {
+           top: 2.95rem;
+       }
+
+       .award-row, .talk-row {
+           grid-template-columns: 1fr;
+           gap: 0.4rem;
+       }
+
+       .education-grid, .teaching-grid {
+           grid-template-columns: 1fr;
+       }
+
+       .subsection-gap {
+           margin-top: 4rem;
+       }
 }
 
 @media (max-width: 480px) {

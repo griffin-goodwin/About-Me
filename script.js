@@ -208,9 +208,16 @@ function getLanguageColor(language) {
 const paperData = [
     {
         path: 'Papers/Goodwin_2026_ApJ_1003_48 (2).pdf',
+        title: 'Improving Solar Flare Soft X-Ray Classification with FOXES: A Framework for Operational X-Ray Emission Synthesis',
+        authors: 'Griffin T. Goodwin, Alison J. March, Jayant Biradar, Christoph Schirninger, Robert Jarolim, Angelos Vourlidas, Viacheslav M. Sadykov, Lorien Pratt',
+        publicationInfo: 'ApJ 2026, 1003, 48',
+        abstract: 'The Geostationary Operational Environmental Satellite (GOES) solar soft X-ray (SXR) irradiance in the 1–8 Å wavelength range is a long-standing measure of solar activity, used to define the classification of flare strengths. As a result, the flare class, along with the SXR light curves, is routinely used as a primary input for forecasting properties of space weather drivers, from coronal mass ejection speed to energetic particle output. However, the GOES SXR irradiance lacks spatial information, leading to known classification errors, such as misattributed flare locations during periods of high activity. Moreover, GOES only provides observations from Earth’s orbit, hindering forecasting for other places in the heliosphere. Motivated by these limitations, we introduce the Framework for Operational X-ray Emission Synthesis (FOXES), a Vision Transformer-based approach for translating Extreme Ultraviolet (EUV) spatially resolved observations into SXR irradiance predictions. The model produces two outputs: (1) a global 1–8 Å SXR flux prediction and (2) per-patch flux contributions, which offer a spatially resolved interpretation of where the model attributes SXR emission. Trained, validated, and tested on over 3200 hr of observations, FOXES has demonstrated a translational mean absolute error of 0.051 dex for integrated SXR measurements. FOXES has also shown promise in dissecting the solar background SXR flux during flaring and nonflaring events. Overall, this model paves the way for EUV-based spatially resolved flare detection to be extended beyond Earth’s line of sight. Such capabilities could lead to a more comprehensive flare catalog and enable a true multiviewpoint monitoring of solar activity.'
+    },
+    {
+        path: 'Papers/2510.22801v1.pdf',
         title: 'FOXES: A Framework For Operational X-ray Emission Synthesis',
         authors: 'Griffin T. Goodwin, Jayant Biradar, Alison J. March, Christoph Schirninger, Robert Jarolim, Angelos Vourlidas, Lorien Pratt',
-        publicationInfo: 'ApJ 2026, 1003, 48',
+        publicationInfo: 'Machine Learning and the Physical Sciences Workshop, NeurIPS 2025',
         arxivId: '2510.22801',
         abstract: 'Understanding solar flares is critical for predicting space weather, as their activity shapes how the Sun influences Earth and its environment. The development of reliable forecasting methodologies of these events depends on robust flare catalogs, but current methods are limited to flare classification using integrated soft X-ray emission that are available only from Earth\'s perspective. This reduces accuracy in pinpointing the location and strength of farside flares and their connection to geoeffective events. In this work, we introduce a Vision Transformer (ViT)-based approach that translates Extreme Ultraviolet (EUV) observations into soft x-ray flux while also setting the groundwork for estimating flare locations in the future. The model achieves accurate flux predictions across flare classes using quantitative metrics. This paves the way for EUV-based flare detection to be extended beyond Earth\'s line of sight, which allows for a more comprehensive and complete solar flare catalog.'
     },
@@ -227,6 +234,14 @@ const paperData = [
         authors: 'Griffin T. Goodwin, Viacheslav M. Sadykov, Petrus C. Martens',
         publicationInfo: 'ApJ 2024, 964, 163',
         abstract: 'This study explores the behavior of machine-learning-based flare forecasting models deployed in a simulated operational environment. Using Georgia State University’s Space Weather Analytics for Solar Flares benchmark data set, we examine the impacts of training methodology and the solar cycle on decision tree, support vector machine, and multilayer perceptron performance. We implement our classifiers using three temporal training windows: stationary, rolling, and expanding. The stationary window trains models using a single set of data available before the first forecasting instance, which remains constant throughout the solar cycle. The rolling window trains models using data from a constant time interval before the forecasting instance, which moves with the solar cycle. Finally, the expanding window trains models using all available data before the forecasting instance. For each window, a number of input features (1, 5, 10, 25, 50, and 120) and temporal sizes (5, 8, 11, 14, 17, and 20 months) were tested. To our surprise, we found that, for a window of 20 months, skill scores were comparable regardless of the window type, feature count, and classifier selected. Furthermore, reducing the size of this window only marginally decreased stationary and rolling window performance. This implies that, given enough data, a stationary window can be chosen over other window types, eliminating the need for model retraining. Finally, a moderately strong positive correlation was found to exist between a model’s false-positive rate and the solar X-ray background flux. This suggests that the solar cycle phase has a considerable influence on forecasting.'
+    },
+    {
+        path: 'Papers/2505.10390v1.pdf',
+        title: 'Operational and Exploration Requirements and Research Capabilities for SEP Environment Monitoring and Forecasting',
+        authors: 'Viacheslav M. Sadykov, Petrus Martens, Dustin Kempton, Rafal Angryk, Berkay Aydin, Jessica Hamilton, Griffin Goodwin, Aatiya Ali, Sanjib K C, Rimsha Syeda, et al.',
+        publicationInfo: '54th International Conference on Environmental Systems (ICES), 2025',
+        arxivId: '2505.10390',
+        abstract: 'Mitigating risks posed by solar energetic particles (SEPs) to operations and exploration in space and Earth\'s atmosphere motivates the development of advanced, synergistic approaches for monitoring, modeling, and analyzing space weather conditions. The consequences of SEPs and their interactions with the near-Earth space environment are numerous, including elevated radiation levels at aviation altitudes during major events, satellite damage, and health risks to astronauts, resulting in economic impacts and potential hazards for space exploration. This contribution presents a high-level overview of the operational requirements and research capabilities for SEP event environment monitoring and forecasting that were highlighted during a workshop at Georgia State University, held on October 16-19, 2024. Specifically, it summarizes the presented activities concerning the following: (1) Identifying needs for SEP event forecasting and nowcasting, including practical forecast timeframes; (2) Reviewing availability and coverage of the current observational data and identifying tangible data resources for research, operations and the R2O2R loop; (3) Mapping existing forecast capabilities and identifying meaningful modeling advances for research and operations.'
     },
 ];
 
@@ -1205,5 +1220,16 @@ document.addEventListener('DOMContentLoaded', () => {
         card.style.transform = 'translateY(30px)';
         card.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
         observer.observe(card);
+    });
+
+    // Scroll-reveal for static CV-derived sections (experience, education, honors, talks)
+    const revealItems = document.querySelectorAll(
+        '.timeline-item, .education-card, .teaching-item, .award-row, .talk-row'
+    );
+    revealItems.forEach((item, index) => {
+        item.style.opacity = '0';
+        item.style.transform = 'translateY(24px)';
+        item.style.transition = `opacity 0.6s ease ${(index % 6) * 0.08}s, transform 0.6s ease ${(index % 6) * 0.08}s`;
+        observer.observe(item);
     });
 });

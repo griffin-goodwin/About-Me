@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Griffin Goodwin - Personal Website">
+    <meta name="description" content="Griffin T. Goodwin — Ph.D. Candidate in Astronomy at Georgia State University. NASA FINESST Fellow researching solar flare forecasting with machine learning.">
     <title>Griffin Goodwin</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
@@ -13,7 +13,9 @@
         <div class="nav-container">
             <ul class="nav-menu">
                 <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
                 <li><a href="#papers" class="nav-link">Papers</a></li>
+                <li><a href="#honors" class="nav-link">Honors</a></li>
                 <li><a href="#spaceweather" class="nav-link">Space Weather</a></li>
                 <li><a href="#solswx" class="nav-link">SOL.SWx</a></li>
                 <li><a href="#research" class="nav-link">Research</a></li>
@@ -35,6 +37,7 @@
 
                         <p class="terminal-cmd terminal-gap"><span class="terminal-prompt-char">$</span> cat position.txt</p>
                         <p class="terminal-output">Ph.D. Candidate in Astronomy &middot; Georgia State University</p>
+                        <p class="terminal-output">HelioLab Researcher &middot; Frontier Development Lab (NASA &middot; NVIDIA &middot; Google)</p>
                         <p class="terminal-output terminal-output-award">NASA FINESST Fellow &middot; 2026 Hadley Award Recipient</p>
 
                         <p class="terminal-cmd terminal-gap"><span class="terminal-prompt-char">$</span> cat research.txt</p>
@@ -53,10 +56,225 @@
         </div>
     </section>
 
+    <section id="experience" class="section experience-section">
+        <div class="container">
+            <h2 class="section-title">Experience</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">06/2025 — Present</span>
+                        <span class="timeline-org">Frontier Development Lab<br>Trillium &middot; NASA &middot; NVIDIA &middot; Google</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">HelioLab Researcher</h3>
+                        <p class="timeline-advisors">Advisors: A. Vourlidas &middot; R. Jarolim &middot; V. Sadykov &middot; C. Schirninger &middot; L. Pratt</p>
+                        <p class="timeline-desc">
+                            Collaborated with an interdisciplinary team of data scientists and heliophysicists to address critical challenges in space weather through machine learning. Developed a Vision Transformer-based regression and localization model using a large-scale dataset of over 200,000 extreme ultraviolet (EUV) solar images (3,300+ hours of observations). The model accurately identifies the locations and intensities of individual solar flares, achieving a <span class="timeline-highlight">79% reduction in RMSE</span> over a simple baseline. Our data and model are publicly deployed on Hugging Face Spaces, enabling real-time inference via a web interface.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Vision Transformers</span>
+                            <span class="timeline-tag">PyTorch</span>
+                            <span class="timeline-tag">Hugging Face</span>
+                            <span class="timeline-tag">EUV Imaging</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">05/2022 — Present</span>
+                        <span class="timeline-org">Georgia State University</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">Graduate Researcher — SunSET Lab</h3>
+                        <p class="timeline-advisors">Advisors: V. Sadykov &middot; D. Kempton &middot; P. Martens</p>
+                        <p class="timeline-desc">
+                            Awarded the competitive <span class="timeline-highlight">NASA FINESST Fellowship</span> to develop ML models that forecast solar flares—a highly imbalanced, rare-event classification problem—from magnetogram and EUV time-series data. Quantified how training-data volume and quality affect predictive performance across MLP, SVM, and ensemble models. Currently leading <span class="timeline-highlight">SWAN-SF 2.0</span>, a terabyte-scale, machine-learning-ready benchmark dataset developed on Apache Spark, featuring an automated pipeline for ingestion, preprocessing, and feature engineering that continuously updates as new data is received.
+                        </p>
+                        <div class="timeline-tags">
+                            <span class="timeline-tag">Apache Spark</span>
+                            <span class="timeline-tag">Time-Series</span>
+                            <span class="timeline-tag">Ensemble Methods</span>
+                            <span class="timeline-tag">HPC / Slurm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">08/2021 — 05/2022</span>
+                        <span class="timeline-org">Georgia Institute of Technology</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">Undergraduate Research Assistant</h3>
+                        <p class="timeline-advisors">Advisor: J. Sowell</p>
+                        <p class="timeline-desc">
+                            Performed multi-band time-series analysis of photometric light curves (R, B, V, TESS) to derive physical parameters of an eclipsing binary system.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-meta">
+                        <span class="timeline-date">06/2021 — 08/2021</span>
+                        <span class="timeline-org">Rensselaer Polytechnic Institute</span>
+                    </div>
+                    <div class="timeline-body">
+                        <h3 class="timeline-role">National Science Foundation Physics REU</h3>
+                        <p class="timeline-advisors">Advisor: H. Newberg</p>
+                        <p class="timeline-desc">
+                            Performed statistical analysis of a large astronomical survey (DES DR2) to characterize stellar-brightness distributions across eight Milky Way halo globular clusters.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title subsection-gap">Education</h2>
+            <div class="education-grid">
+                <div class="education-card">
+                    <p class="education-dates">05/2022 — Present</p>
+                    <h3 class="education-school">Georgia State University</h3>
+                    <p class="education-degree">Ph.D. Candidate in Astronomy</p>
+                    <p class="education-degree education-degree-secondary">M.S. in Physics (2024)</p>
+                    <div class="education-stats">
+                        <span class="education-gpa">GPA 4.19<span class="education-gpa-scale">/4.30</span></span>
+                        <span class="education-note">NASA FINESST Fellow &middot; Hadley Award</span>
+                    </div>
+                </div>
+                <div class="education-card">
+                    <p class="education-dates">08/2018 — 05/2022</p>
+                    <h3 class="education-school">Georgia Institute of Technology</h3>
+                    <p class="education-degree">B.S. in Physics — Astrophysics Concentration</p>
+                    <p class="education-degree education-degree-secondary">Minor in Computational Data Analysis</p>
+                    <div class="education-stats">
+                        <span class="education-gpa">GPA 3.94<span class="education-gpa-scale">/4.00</span></span>
+                        <span class="education-note">Dean's List, 2018 — 2022</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title subsection-gap">Teaching &amp; Mentoring</h2>
+            <div class="teaching-grid">
+                <div class="teaching-item">
+                    <span class="teaching-dates">2023 — Present</span>
+                    <div class="teaching-body">
+                        <h3 class="teaching-role">Graduate Mentor</h3>
+                        <p class="teaching-desc">Mentoring a CS M.S. student at Georgia State University — weekly 1:1s, code review, and technical direction.</p>
+                    </div>
+                </div>
+                <div class="teaching-item">
+                    <span class="teaching-dates">2022 — 2024</span>
+                    <div class="teaching-body">
+                        <h3 class="teaching-role">Teaching Assistant</h3>
+                        <p class="teaching-desc">Introductory Astronomy Labs at Georgia State University.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section id="papers" class="section papers-section">
         <div class="container">
             <h2 class="section-title">Papers</h2>
             <div id="papers-grid" class="papers-grid"></div>
+        </div>
+    </section>
+
+    <section id="honors" class="section honors-section">
+        <div class="container">
+            <h2 class="section-title">Grants, Fellowships &amp; Awards</h2>
+            <div class="awards-list">
+                <div class="award-row award-row-major">
+                    <span class="award-year">2023 — 2026</span>
+                    <div class="award-info">
+                        <span class="award-name">NASA FINESST Fellow</span>
+                        <span class="award-detail">$150,000 Research Grant &middot; NASA</span>
+                    </div>
+                </div>
+                <div class="award-row award-row-major">
+                    <span class="award-year">2026</span>
+                    <div class="award-info">
+                        <span class="award-name">Hadley Award</span>
+                        <span class="award-detail">Outstanding Advanced Graduate Student in Physics &middot; Georgia State University</span>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <span class="award-year">2025</span>
+                    <div class="award-info">
+                        <span class="award-name">ML-Helio Travel Grant</span>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <span class="award-year">2023, '25, '26</span>
+                    <div class="award-info">
+                        <span class="award-name">Space Weather Workshop Travel Aid</span>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <span class="award-year">2023, '24, '26</span>
+                    <div class="award-info">
+                        <span class="award-name">SHINE Student Travel Aid</span>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <span class="award-year">2022 — 2023</span>
+                    <div class="award-info">
+                        <span class="award-name">Second Century Initiative Fellow</span>
+                        <span class="award-detail">Georgia State University</span>
+                    </div>
+                </div>
+                <div class="award-row">
+                    <span class="award-year">2018 — 2022</span>
+                    <div class="award-info">
+                        <span class="award-name">Dean's List</span>
+                        <span class="award-detail">Georgia Institute of Technology</span>
+                    </div>
+                </div>
+            </div>
+
+            <h2 class="section-title subsection-gap">Selected Talks &amp; Presentations</h2>
+            <div class="talks-list">
+                <div class="talk-row">
+                    <span class="talk-date">09/2025</span>
+                    <div class="talk-info">
+                        <div class="talk-header">
+                            <span class="talk-badge badge-poster">Poster</span>
+                            <span class="talk-venue">Machine Learning in Heliophysics &middot; Madrid, Spain</span>
+                        </div>
+                        <p class="talk-title">FOXES: A Framework for Operational X-ray Emission Synthesis</p>
+                    </div>
+                </div>
+                <div class="talk-row">
+                    <span class="talk-date">06/2025</span>
+                    <div class="talk-info">
+                        <div class="talk-header">
+                            <span class="talk-badge badge-organizer">Session Organizer</span>
+                            <span class="talk-venue">Solar Heliospheric and Interplanetary Environment (SHINE) &middot; Charleston, SC</span>
+                        </div>
+                        <p class="talk-title">Intertwining Physics-Based Simulations and ML in Heliophysics</p>
+                    </div>
+                </div>
+                <div class="talk-row">
+                    <span class="talk-date">03/2025</span>
+                    <div class="talk-info">
+                        <div class="talk-header">
+                            <span class="talk-badge badge-lightning">Selected Lightning Talk</span>
+                            <span class="talk-venue">Space Weather Workshop &middot; Boulder, CO</span>
+                        </div>
+                        <p class="talk-title">Assessing the Impacts of Magnetogram Projection Effects on Solar Flare Forecasting</p>
+                    </div>
+                </div>
+                <div class="talk-row">
+                    <span class="talk-date">10/2024</span>
+                    <div class="talk-info">
+                        <div class="talk-header">
+                            <span class="talk-badge badge-invited">Invited Talk</span>
+                            <span class="talk-venue">Annual International AL Plasma Physics Conference &middot; Huntsville, AL</span>
+                        </div>
+                        <p class="talk-title">The Data Mining Lab at GSU: Harnessing Big Data and AI for Solar Transient Event Forecasting</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -152,6 +370,7 @@
             <div class="contact-links">
                 <a href="mailto:ggoodwin5@gsu.edu" class="contact-button">Email Me</a>
                 <a href="https://github.com/griffin-goodwin" class="contact-button" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/griffin-goodwin/" class="contact-button" target="_blank">LinkedIn</a>
             </div>
         </div>
     </section>
